@@ -2,7 +2,8 @@
 
 # Store networks in array if provided, otherwise leave empty
 networks=("$@")
-
+NETWORKS_URL="${NETWORKS_URL:-https://raw.githubusercontent.com/rhinestonewtf/constants/refs/heads/main/networks.txt}"
+echo "NETWORKS_URL: $NETWORKS_URL"
 
 while IFS='=' read -r network url; do
     # Skip empty lines and comments
@@ -105,4 +106,4 @@ while IFS='=' read -r network url; do
     fi
     printf '\e]8;;https://contractscan.xyz/contract/0x99c6012a4c2642a23685b060b670f888d6f9fe66\e\\Staff Safe successfully deployed\e]8;;\e\\\n'
 
-done < <(curl -s https://raw.githubusercontent.com/rhinestonewtf/constants/refs/heads/main/networks.txt)
+done < <(curl -s "$NETWORKS_URL")
